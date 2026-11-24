@@ -1,0 +1,23 @@
+services:
+  api:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      SE_ENVIRONMENT: local
+      SE_DEBUG: "true"
+      SE_CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    volumes:
+      - ./backend/app:/app/app
+    command:
+      - uv
+      - run
+      - --no-dev
+      - fastapi
+      - dev
+      - app/main.py
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"

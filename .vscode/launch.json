@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "API (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--reload",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "python": "${workspaceFolder}/backend/.venv/bin/python",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Flutter (Chrome)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}/mobile",
+      "args": [
+        "--web-port",
+        "5173",
+        "--dart-define=API_BASE_URL=http://localhost:8000"
+      ]
+    },
+    {
+      "name": "Flutter (macOS)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}/mobile"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full stack (API + Flutter web)",
+      "configurations": ["API (FastAPI)", "Flutter (Chrome)"]
+    }
+  ]
+}
